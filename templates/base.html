@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TenterApp</title>
+</head>
+<body>
+{% for obj in news_list %}
+<div style="border: 1px solid black;margin-bottom: 10px">
+    <p><img width="100" height="100" src="{{ obj.image.url }}" alt="{{obj.image.url}}"></p>
+    <p style="color: red">{{ obj.title }}</p>
+    <h5 style="color: green">{{ obj.content }} </h5>
+    <h5>{{ obj.date }}</h5>
+</div>
+{% endfor %}
+
+</body>
+</html>
