@@ -2,7 +2,7 @@ from django.shortcuts import render
 from mainapp.models import News
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import NewsSerializers
+from .serializers import NewsSerializers,NewsCreateSerializers
 
 
 @api_view(['GET'])
@@ -21,7 +21,7 @@ def newsDetail(request, pk):
 
 @api_view(['POST'])
 def newsCreate(request):
-    serializer = NewsSerializers(data=request.data)
+    serializer = NewsCreateSerializers(data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -30,7 +30,7 @@ def newsCreate(request):
 @api_view(['POST'])
 def newsUpdate(request, pk):
     news = News.objects.get(id=pk)
-    serializer = NewsSerializers(instance=news, data=request.data)
+    serializer = NewsCreateSerializers(instance=news, data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
